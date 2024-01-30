@@ -15,7 +15,12 @@ export default function Center({ children }) {
 	const handleAddStickyNote = () => {
 		const updatedListOfNotes = [...listOfStickyNotes, <StickyNote></StickyNote>]
 		setListOfStickyNotes(updatedListOfNotes)
-		console.log(updatedListOfNotes)
+	}
+
+	const handleRemoveStickyNote = index => {
+		const updatedListOfNotes = [...listOfStickyNotes]
+		updatedListOfNotes.splice(index, 1) // Remove item at index
+		setListOfStickyNotes(updatedListOfNotes)
 	}
 
 	let showMenu = (
@@ -44,7 +49,7 @@ export default function Center({ children }) {
 		<section className='center'>
 			<div className='center__shadow'></div>
 			{listOfStickyNotes.map((item, index) => (
-				<div key={index} className='stickyNote__wrapper'>
+				<div key={index} className='stickyNote__wrapper' onClick={() => handleRemoveStickyNote(index)}>
 					{item}
 				</div>
 			))}
